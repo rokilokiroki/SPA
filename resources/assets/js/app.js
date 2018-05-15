@@ -6,7 +6,10 @@
  */
 
 import Vue from 'vue'
-require('bootstrap-sass');
+import router from './router'
+import http from './services/http.js'
+
+require('./bootstrap');
 
 window.Vue = require('vue');
 
@@ -16,9 +19,12 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example', require('./components/ExampleComponent.vue'));
 
 const app = new Vue({
+    router,
     el: '#app',
-    render: h => h(require('./app.vue'))
-});
+    created(){
+      http.init()
+    },
+    render: h => h(require('./app.vue')),
+}).$mount('#app');

@@ -24,8 +24,9 @@ class TaskController extends Controller
 
     public function update($id, Request $request)
     {
-        return Task::find($id)->fill($request->only('is_done'))
-               ->save()->fresh();
+        $task = Task::find($id)->fill($request->only('is_done'));
+        $task->save();
+        return $task;
     }
 
 }
